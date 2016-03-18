@@ -1,9 +1,11 @@
 {
   "name": "simple-panes",
   "main": "./simple-panes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pane management simplified.",
-  "keywords": ["pane"],
+  "keywords": [
+    "pane"
+  ],
   "activationCommands": {},
   "repository": "https://github.com/joslarson/atom-simple-panes",
   "license": "MIT",
