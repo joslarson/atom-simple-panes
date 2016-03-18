@@ -1,7 +1,7 @@
 {
   "name": "simple-panes",
   "main": "./simple-panes",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simplified pane management for Atom.",
   "keywords": [
     "pane"
