@@ -1,7 +1,7 @@
 {
   "name": "simple-panes",
   "main": "./simple-panes",
-  "version": "2.0.0",
+  "version": "0.0.0",
   "description": "This package takes a simplified approach to pane management, enabling you to move you active editor tab between existing panes, or into new panes, with a simple set of directional commands.",
   "keywords": [],
   "activationCommands": {},
