@@ -7,8 +7,15 @@
 
 # For more detailed documentation see
 # https://atom.io/docs/latest/behind-atom-keymaps-in-depth
-'atom-text-editor':
+
+'.platform-darwin atom-text-editor':
   'cmd-k up': 'simple-panes:move-item-above-pane'
   'cmd-k right': 'simple-panes:move-item-right-of-pane'
   'cmd-k down': 'simple-panes:move-item-below-pane'
   'cmd-k left': 'simple-panes:move-item-left-of-pane'
+
+'.platform-win32 atom-text-editor, .platform-linux atom-text-editor':
+  'ctrl-k up': 'simple-panes:move-item-above-pane'
+  'ctrl-k right': 'simple-panes:move-item-right-of-pane'
+  'ctrl-k down': 'simple-panes:move-item-below-pane'
+  'ctrl-k left': 'simple-panes:move-item-left-of-pane'
