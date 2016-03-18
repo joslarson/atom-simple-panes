@@ -1,0 +1,48 @@
+# See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    {'type': 'separator'}
+    {
+      'label': 'Move Right'
+      'command': 'simple-panes:move-item-right-of-pane'
+    }
+    {
+      'label': 'Move Left'
+      'command': 'simple-panes:move-item-left-of-pane'
+    }
+    {
+      'label': 'Move Up'
+      'command': 'simple-panes:move-item-above-pane'
+    }
+    {
+      'label': 'Move Down'
+      'command': 'simple-panes:move-item-below-pane'
+    }
+    {'type': 'separator'}
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Simple Panes'
+      'submenu': [
+        {
+          'label': 'Move Right'
+          'command': 'simple-panes:move-item-right-of-pane'
+        }
+        {
+          'label': 'Move Left'
+          'command': 'simple-panes:move-item-left-of-pane'
+        }
+        {
+          'label': 'Move Up'
+          'command': 'simple-panes:move-item-above-pane'
+        }
+        {
+          'label': 'Move Down'
+          'command': 'simple-panes:move-item-below-pane'
+        }
+      ]
+    ]
+  }
+]
