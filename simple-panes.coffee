@@ -1,10 +1,9 @@
 window.simplePanesMoveItem = (direction) ->
     # use to dispatch commands at the editor scope
-    editorElement = atom.views.getView atom.workspace.getActiveTextEditor()
+    activePaneElement = atom.views.getView atom.workspace.getActivePane()
 
     # PaneContainerElement is not exposed in the api, so we have to get it manually
-    paneContainerElement = atom.views.getView atom.workspace.getActivePane()
-        .closest('atom-pane-container')
+    paneContainerElement = activePaneElement.closest('atom-pane-container')
     # Use paneContainerElement method to get the nearest pane in a given direction
     nearestPaneInDirection = paneContainerElement
         .nearestPaneInDirection(direction)?.getModel()
@@ -15,21 +14,21 @@ window.simplePanesMoveItem = (direction) ->
             command = 'window:move-active-item-to-pane-' + direction
         else
             command = 'window:move-active-item-to-pane-on-' + direction
-        atom.commands.dispatch editorElement, command
+        atom.commands.dispatch activePaneElement, command
     else
         # pane:split-{}-and-move-active-item uses up/down instead of above/below
         splitMoveDirection = {above: 'up', below: 'down', left: 'left', right: 'right'}[direction]
         command = 'pane:split-' + splitMoveDirection + '-and-move-active-item'
-        atom.commands.dispatch editorElement, command
+        atom.commands.dispatch activePaneElement, command
 
-atom.commands.add 'atom-text-editor', 'simple-panes:move-item-above-pane': () ->
+atom.commands.add 'atom-pane', 'simple-panes:move-item-above-pane': () ->
     simplePanesMoveItem 'above'
 
-atom.commands.add 'atom-text-editor', 'simple-panes:move-item-right-of-pane': () ->
+atom.commands.add 'atom-pane', 'simple-panes:move-item-right-of-pane': () ->
     simplePanesMoveItem 'right'
 
-atom.commands.add 'atom-text-editor', 'simple-panes:move-item-below-pane': () ->
+atom.commands.add 'atom-pane', 'simple-panes:move-item-below-pane': () ->
     simplePanesMoveItem 'below'
 
-atom.commands.add 'atom-text-editor', 'simple-panes:move-item-left-of-pane': () ->
+atom.commands.add 'atom-pane', 'simple-panes:move-item-left-of-pane': () ->
     simplePanesMoveItem 'left'
