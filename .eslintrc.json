@@ -1,0 +1,21 @@
+{
+    "extends": "airbnb",
+    "globals": {
+        "atom": true
+    },
+    "env": {
+        "browser": true
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "rules": {
+        "indent": ["error", 4, {"SwitchCase": 1}],
+        "no-unused-vars": ["warn", { "vars": "all", "args": "after-used" }],
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": false, "peerDependencies": false}]
+    },
+    "plugins": [
+    ]
+}
