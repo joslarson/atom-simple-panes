@@ -2,6 +2,12 @@
 
 This package takes a simplified approach to pane management, enabling you to move you active editor tab between existing panes, or into new panes, with a simple set of directional commands.
 
+This replaces Atom's default behavior, which in contrast opens new views into the same tab in an existing pane, resulting in the same file being opened multiple times, and requiring you to first create a pain before duplicating the active tab into it.
+
+Simple Panes takes the position that this behavior, while useful, should not be the default, and that when a pane does not exist in a desired direction, a new pane should be created for the active tab to be moved into.
+
+Atoms default behavior can still be accessed from the command pallet, or reassigned through a custom keymap.
+
 
 ## Installation
 
