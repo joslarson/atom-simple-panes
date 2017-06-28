@@ -1,5 +1,9 @@
 ## 1.2.0
 
+* adds support for Atom >=1.19.0
+
+## 1.1.0
+
 * switches from coffeescript to pure js
 * updates readme with better description
 
