@@ -1,13 +1,25 @@
-function simplePanesMoveItem(direction) {
-    // use to dispatch commands at the editor scope
-    const activePaneElement = atom.views.getView(atom.workspace.getActivePane());
-    // PaneContainerElement is not exposed in the api, so we have to get it manually
-    const paneContainerElement = activePaneElement.closest('atom-pane-container');
-    // Use paneContainerElement method to get the nearest pane in a given direction
-    const nearestPaneInDirection = paneContainerElement.nearestPaneInDirection(direction);
+const ATOM_VERSION = Number(atom.appVersion.split('.').slice(0, 2).join('.'));
+
+function moveItemToPane(direction) {
+    // use to dispatch commands at the pane scope
+    const activePane = atom.workspace.getActivePane();
+    const activePaneElement = activePane.getElement();
+
+    let nearestPaneInDirection;
+    if (ATOM_VERSION >= 1.19) {
+        const workspaceElement = atom.workspace.getElement();
+        nearestPaneInDirection = workspaceElement
+            .nearestVisiblePaneInDirection(direction, activePane);
+        const isEditor = nearestPaneInDirection &&
+            nearestPaneInDirection.querySelector('atom-text-editor');
+        nearestPaneInDirection = isEditor ? nearestPaneInDirection : null;
+    } else {
+        const paneContainerElement = activePane.container.getElement();
+        nearestPaneInDirection = paneContainerElement.nearestPaneInDirection(direction);
+    }
 
     if (nearestPaneInDirection) {
-        // if a pane in the given direction exist add the current tab to it
+        // if a pane in the given direction exist move the active tab to it
         let command;
         if (['above', 'below'].indexOf(direction) > -1) {
             command = `window:move-active-item-to-pane-${direction}`;
@@ -18,24 +30,23 @@ function simplePanesMoveItem(direction) {
     } else {
         // otherwise create a new pane in the given direction and move the active tab to it
         const optionsMap = { above: 'up', below: 'down', left: 'left', right: 'right' };
-        const splitMoveDirection = optionsMap[direction];
-        const command = `pane:split-${splitMoveDirection}-and-move-active-item`;
+        const command = `pane:split-${optionsMap[direction]}-and-move-active-item`;
         atom.commands.dispatch(activePaneElement, command);
     }
 }
 
 atom.commands.add('atom-pane', 'simple-panes:move-item-above-pane', () => {
-    simplePanesMoveItem('above');
+    moveItemToPane('above');
 });
 
 atom.commands.add('atom-pane', 'simple-panes:move-item-right-of-pane', () => {
-    simplePanesMoveItem('right');
+    moveItemToPane('right');
 });
 
 atom.commands.add('atom-pane', 'simple-panes:move-item-below-pane', () => {
-    simplePanesMoveItem('below');
+    moveItemToPane('below');
 });
 
 atom.commands.add('atom-pane', 'simple-panes:move-item-left-of-pane', () => {
-    simplePanesMoveItem('left');
+    moveItemToPane('left');
 });
